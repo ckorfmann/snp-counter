@@ -61,7 +61,6 @@ For further information on how to install Python and update PIP, please go to th
    (both of the above two sample commands will write the output to "*mutations.csv*" inside the same folder as *snpCounter.py*)
    
 ## Usage
---------------------------------------------
 Takes up to 2 input arguments, and requires valid *.map* file, generated from FASTA data, as first input argument.
 | Settings | Description |
 | --------- | ----------- |
@@ -69,7 +68,6 @@ Takes up to 2 input arguments, and requires valid *.map* file, generated from FA
 | outputFile | (OPTIONAL) Name of output file to be generated. |
 
 ## Output
---------------------------------------------
 | Output File | Description |
 | --------- | ----------- |
 | filename | Count of position specific SNP mutations, in a comma separated plain text list. Default output is '*output.csv*' and will be generated in same directory as *snpCounter.py*. Recommended output is in *.csv* format |
