@@ -6,7 +6,7 @@ Counts all SNP mutations in .map file
 A current installation of Python is required. For best results, please use Python 3.x and the latest PIP version.
 For further information on how to install Python and update PIP, please go to the [Python Download Page](https://www.python.org/downloads/), and for installation help please go to the [Python Installation Help Page](https://wiki.python.org/moin/BeginnersGuide/Download)
 
-> *NOTE for Windows users*: the PowerShell requires the addition of ".\" before the execution of a *.py* file (ie *.\program.py*). Also, both PowerShell and Command Terminal require double quote marks ("") around directories.
+> *NOTE for Windows users*: the PowerShell requires the addition of " .\ " before the execution of a *.py* file (ie *.\program.py*). Also, both PowerShell and Command Terminal require double quote marks ("") around directories.
  
 > *NOTE for Unix (Linux, MacOS) users*: the Terminal requires single quote ('') around directories
 
