@@ -6,7 +6,7 @@ Instructions:
 
     1) Copy snpCounter.py into any directory. If your terminal denies you access to other directories 
        containing your .map files, copy snpCounter.py directly into the folder with the .map files.
-    2) Open a terminal in this directory, or change the directory of your terminal to this directory
+    2) Open a terminal in this directory, or change the directory of your terminal to the directory containing snpCounter.py
        (ie. for Linux: $ cd /home/Documents/folder_containing_data; for Windows: cd "C:\Users\username\Documents\folder containing data\")
     3) Type the following command: "snpCounter.py inputFile outputFile" for Windows or "python3 snpCounter.py inputFile outputFile" for Linux
        or "python snpCounter.py inputFile outputFile" for Mac, where "inputFile" is the name of the .map file you want to 
@@ -20,4 +20,4 @@ Instructions:
 
 Below is a sample run in the Windows Command Terminal, with snpCounter.py in the same directory as the .map data, and the 
 output written to a sub-folder within this directory.
-![image](https://user-images.githubusercontent.com/81862894/113481950-6cef5300-946a-11eb-9ade-16294afbd5be.png)
+![image](https://user-images.githubusercontent.com/81862894/113482424-b640a200-946c-11eb-8222-c9cb69cf413d.png)
