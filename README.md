@@ -56,7 +56,7 @@ For further information on how to install Python and update PIP, please go to th
    ```
    if *snpCounter.py* is in a different folder:
    ```
-   $ python3 snpCounter.py /Documents/data/ecoliGenome.map mutations.csv
+   $ python3 snpCounter.py '/Documents/data/ecoliGenome.map' mutations.csv
    ```
    (both of the above two sample commands will write the output to "*mutations.csv*" inside the same folder as *snpCounter.py*)
    
@@ -75,4 +75,4 @@ Takes up to 2 input arguments, and requires valid *.map* file, generated from FA
 | filename | Count of position specific SNP mutations, in a comma separated plain text list. Default output is '*output.csv*' and will be generated in same directory as *snpCounter.py*. Recommended output is in *.csv* format |
 
 
-This program was written with *Python 3.9.2 on Windows10 Pro Build 19041* and tested on both *Windows10 Pro Build 19041 and Ubuntu 18.04.5 LTS*
+This program was written with *Python 3.9.2 on Windows10 Pro Build 19041* and tested on both *Windows10 Pro Build 19041* and *Ubuntu 18.04.5 LTS*
