@@ -71,6 +71,7 @@ Takes up to 2 input arguments, and requires valid *.map* file, generated from FA
 ## Output
 --------------------------------------------
 | Output File | Description |
+| --------- | ----------- |
 | filename | Count of position specific SNP mutations, in a comma separated plain text list. Default output is '*output.csv*' and will be generated in same directory as *snpCounter.csv*. Recommended output is in *.csv* format |
 
 
