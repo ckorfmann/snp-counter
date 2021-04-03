@@ -18,7 +18,7 @@ For further information on how to install Python and update PIP, please go to th
 2) Open a terminal in this directory, or change the directory of your terminal to the directory containing *snpCounter.py*
    ie. for MacOS/Linux: 
       ```
-      $ cd /home/Documents/'folder containing data/'
+      $ cd '/home/username/Documents/folder containing data/'
       ```
    
       for Windows:
@@ -56,7 +56,7 @@ For further information on how to install Python and update PIP, please go to th
    ```
    if *snpCounter.py* is in a different folder:
    ```
-   $ python3 snpCounter.py '/Documents/data/ecoliGenome.map' mutations.csv
+   $ python3 snpCounter.py 'Documents/data/ecoliGenome.map' mutations.csv
    ```
    (both of the above two sample commands will write the output to "*mutations.csv*" inside the same folder as *snpCounter.py*)
    
