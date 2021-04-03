@@ -3,7 +3,7 @@
 __author__ = "Christopher Korfmann"
 __copyright__ = "Copyright (C) 2021 Christopher Korfmann"
 __license__ = "Private"
-__version__ = "1.0"
+__version__ = "1.1"
 
 
 import re
@@ -12,12 +12,12 @@ defaultOutput = 'output.csv'   # define default output file
 
 # check for number of input arguments
 if len(sys.argv) < 2:
-    sys.exit("Need an input file. First input argument should contain the directory to a valid .map file.\nExample: snpCounter.py IonCode_0102_trim.map")
+    sys.exit(">>> Need an input file. First input argument should contain the directory to a valid .map file.\n>>> Example: snpCounter.py genome.map")
 if len(sys.argv) < 3:
     confirm = input(
-        "Warning, will overwrite any file in the current directory called 'output.csv'. Continue? (y/n)\n")
+        ">>> Warning, will overwrite any file in the current directory called 'output.csv'. Continue? (y/n)\n>>> ")
     if confirm.lower() != 'y':
-        sys.exit("No output. Exiting...")
+        sys.exit(">>> No output. Exited successfully...")
     sys.argv.append(defaultOutput)  # set output to default ('output.csv')
 
 
@@ -161,7 +161,7 @@ with open(sys.argv[2], 'w') as o:      # open output file (sys.argv[2]) as write
 
 o.close()   # close output file
 
-print('Output written to', sys.argv[2])
+print('>>> Output written to "' + sys.argv[2] + '"')
 
 
 # author Christopher Korfmann
