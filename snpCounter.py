@@ -105,8 +105,9 @@ with open(sys.argv[1], 'r') as f:
 
     for item in f.readlines():
         # split current line into space separated tokens
+        # current line length may be variable across runtimes, thus it's safest to tokenize
         line = re.split(r'\t', item)
-        if len(line) == 8:
+        if len(line) > 2:
             lineCount += 1
         # tokenize the SNP string (last space separated string in each line of .map file)
         snpString = re.split(r'[, \n]', line[7])
