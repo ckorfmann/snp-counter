@@ -2,14 +2,27 @@
 
 __author__ = "Christopher Korfmann"
 __copyright__ = "Copyright (c) 2021, Christopher Korfmann"
-__license__ = "BSD 3-Clause License"
+__license__ = "GPL-3.0-only"
 __version__ = "1.2"
 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-import re, sys
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+import re
+import sys
 defaultOutput = 'output.csv'  # define default output file
 
-# check for number of input arguments
 if len(sys.argv) < 2:
     sys.exit(">>> Need an input file. First input argument should contain the directory to a valid .map file.\n>>> Example: snpCounter.py genome.map")
 if len(sys.argv) < 3:
@@ -20,8 +33,9 @@ if len(sys.argv) < 3:
     sys.argv.append(defaultOutput)  # set output to default ('output.csv')
 
 
+# unique SNP objects and SNP list
 class snpList:
-    total = []  # list of all unique substitutions
+    total = []  # static list of all unique substitutions
 
     def __init__(self, position, base, substitution):
         self.position = position  # integer position of SNP
@@ -48,11 +62,11 @@ class snpList:
             self.TGcount = 0
             self.TAcount = 0
 
-        self.add(substitution)      # count first substitution
-        snpList.total.append(self)  # add to list
+        self.add(substitution)
+        snpList.total.append(self)
 
-    def add(self, substitution):    # counter function
-        # increment substitution specific counter
+    # substitution specific incrementer
+    def add(self, substitution):
         if self.base == 'A':
             if substitution == 'C':
                 self.ACcount += 1
@@ -86,53 +100,47 @@ class snpList:
                 self.TCcount += 1
 
 
-# main function
 lineCount = 0
-with open(sys.argv[1], 'r') as f:   # open input (.map) file
+with open(sys.argv[1], 'r') as f:
 
-    for item in f.readlines():      # begin reading each line
-        # └--->split current line into space separated tokens
+    for item in f.readlines():
+        # split current line into space separated tokens
         line = re.split(r'\t', item)
         if len(line) == 8:
             lineCount += 1
-        # └--->find the SNP string token at the end of current line (last space separated string in each line of .map file)
+        # find the SNP string token at the end of current line (last space separated string in each line of .map file)
         snpString = re.split(r'([, \n])', line[7])
-
-        for snpToken in snpString:   # └--->parse through current SNP string token and generate usable unique SNP token
+        # parse through current SNP string token and generate usable unique SNP tokens
+        for snpToken in snpString:
             if snpToken == '' or snpToken == '\n':
                 break
             if snpToken == ',':
                 continue
-            # └--->└---> generate position, base, and substitution tokens from current SNP token
+            # split current SNP token into position, expected base, and substitution
             SNP = re.split('([:>])', snpToken)
-            # └--->└---> capture actual position (not zero-based indexed position from .map) of SNP, ie. 62:A>G will be snpPosition = 63
-            snpPosition = int(SNP[0]) + 1
-            # └--->└---> capture expected base
-            base = SNP[2]
-            # └--->└---> capture substituted base
-            substitution = SNP[4]
+            snpPosition = int(SNP[0]) + 1     # capture actual position (not zero-based index position) of SNP
+            base = SNP[2]                     # capture expected base
+            substitution = SNP[4]             # capture substituted base
 
             index = 0
-            for snpElem in snpList.total:   # └--->└---> check if current position/base pair exists in the list
-                # └--->└--->└---> if exists, increment substitution specific counter
+            for snpElem in snpList.total:     # check if current position/base pair exists in the list
                 if snpElem.position == snpPosition and snpElem.base == base:
-                    snpElem.add(substitution)
+                    snpElem.add(substitution) # if exists, increment substitution specific counter
                     break
                 index += 1
-            # └--->└---> add position/base pair to list, if it doesn't exist
+
+            # if doesn't exist, add position/base pair to list
             if index == len(snpList.total):
                 snpList(snpPosition, base, substitution)
 
-f.close()   # close input file
+f.close()
 
-# Save a reference to the original standard output
 original_stdout = sys.stdout
 
-with open(sys.argv[2], 'w') as o:      # open output file (sys.argv[2]) as writeable
-    # Change the standard output to sys.argv[2]
+with open(sys.argv[2], 'w') as o:
     sys.stdout = o
-    print('Position,Base,A,C,G,T')     # Print column names
-    for final in snpList.total:        # print each position/base pair and its counter
+    print('Position,Base,A,C,G,T')
+    for final in snpList.total:     # print each position/base pair and its substitution counters
         if final.base == 'A':
             print(str(final.position) + ',' + final.base + ',' + str(lineCount - (final.ACcount + final.AGcount + final.ATcount)) + ',' +
                   str(final.ACcount) + ',' + str(final.AGcount) + ',' + str(final.ATcount))
@@ -146,14 +154,12 @@ with open(sys.argv[2], 'w') as o:      # open output file (sys.argv[2]) as write
             print(str(final.position) + ',' + final.base + ',' + str(final.TAcount) + ',' +
                   str(final.TCcount) + ',' + str(final.TGcount) + ',' + str(lineCount - (final.TCcount + final.TGcount + final.TAcount)))
 
-    # Reset the standard output to its original value
     sys.stdout = original_stdout
 
-o.close()   # close output file
+o.close()
 
 print('>>> Output written to "' + sys.argv[2] + '"')
 
 
 # Author: Christopher Korfmann
 # Copyright (c) 2021, Christopher Korfmann
-# All rights reserved
