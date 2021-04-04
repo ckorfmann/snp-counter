@@ -108,9 +108,9 @@ with open(sys.argv[1], 'r') as f:
         line = re.split(r'\t', item)
         if len(line) == 8:
             lineCount += 1
-        # find the SNP string token at the end of current line (last space separated string in each line of .map file)
+        # tokenize the SNP string (last space separated string in each line of .map file)
         snpString = re.split(r'[, \n]', line[7])
-        # parse through current SNP string token and generate usable unique SNP tokens
+        # parse through current SNP string token and generate usable unique SNP token
         for snpToken in snpString:
             if snpToken:
                 # split current SNP token into position, expected base, and substitution
