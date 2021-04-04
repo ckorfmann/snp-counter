@@ -109,29 +109,26 @@ with open(sys.argv[1], 'r') as f:
         if len(line) == 8:
             lineCount += 1
         # find the SNP string token at the end of current line (last space separated string in each line of .map file)
-        snpString = re.split(r'([, \n])', line[7])
+        snpString = re.split(r'[, \n]', line[7])
         # parse through current SNP string token and generate usable unique SNP tokens
         for snpToken in snpString:
-            if snpToken == '' or snpToken == '\n':
-                break
-            if snpToken == ',':
-                continue
-            # split current SNP token into position, expected base, and substitution
-            SNP = re.split('([:>])', snpToken)
-            snpPosition = int(SNP[0]) + 1     # capture actual position (not zero-based index position) of SNP
-            base = SNP[2]                     # capture expected base
-            substitution = SNP[4]             # capture substituted base
+            if snpToken:
+                # split current SNP token into position, expected base, and substitution
+                SNP = re.split(r'[:>]', snpToken)
+                snpPosition = int(SNP[0]) + 1     # capture actual position (not zero-based index position) of SNP
+                base = SNP[1]                     # capture expected base
+                substitution = SNP[2]             # capture substituted base
 
-            index = 0
-            for snpElem in snpList.total:     # check if current position/base pair exists in the list
-                if snpElem.position == snpPosition and snpElem.base == base:
-                    snpElem.add(substitution) # if exists, increment substitution specific counter
-                    break
-                index += 1
+                index = 0
+                for snpElem in snpList.total:     # check if current position/base pair exists in the list
+                    if snpElem.position == snpPosition and snpElem.base == base:
+                        snpElem.add(substitution) # if exists, increment substitution specific counter
+                        break
+                    index += 1
 
-            # if doesn't exist, add position/base pair to list
-            if index == len(snpList.total):
-                snpList(snpPosition, base, substitution)
+                # if doesn't exist, add position/base pair to list
+                if index == len(snpList.total):
+                    snpList(snpPosition, base, substitution)
 
 f.close()
 
