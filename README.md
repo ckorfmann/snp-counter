@@ -60,7 +60,7 @@ Takes up to 2 input arguments, and requires valid *.map* file, generated from FA
 | inputFile | Valid *.map* file generated from FASTA data. |
 | outputFile | (OPTIONAL) Name of output file to be generated. |
 
-Help documentation (including usage information) can be accessed using the following command.
+Help documentation (including usage and output information) can be accessed using the following command.
 ```
 snpCounter.py help
 ```
