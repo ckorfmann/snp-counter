@@ -28,7 +28,7 @@ defaultOutput = 'output.csv'  # define default output file
 
 
 if len(sys.argv) < 2:
-    sys.exit(">>> Error - Need an input file. First input argument should contain the directory to a valid .map file.\n>>> Example: snpCounter genome.map\n>>> Enter 'snpCounter help' for more information")
+    sys.exit(">>> Error - Need an input file. First input argument should contain the directory to a valid .map file.\n>>> Example: snpCounter.py genome.map\n>>> Enter 'snpCounter.py help' for more information")
 if len(sys.argv) == 3:
     confirm = input(
         ">>> Warning, will overwrite any file in the current directory called \n    '" + sys.argv[2] + "'\n>>> Continue? (y/n)\n>>> ")
