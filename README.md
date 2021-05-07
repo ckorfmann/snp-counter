@@ -40,6 +40,17 @@ For further information on how to install Python and update PIP, please go to th
 
    **WARNING: the default output *will overwrite* any file in the directory named "*output.csv*" if no output file name is specified. Similarly, any existing file in the output directory with the same name as the output specified in the second argument *will be overwritten*.**
 
+    Alternatively, for Linux/MacOS, if you gain permission to execute *snpCounter.py* directly, you can run the program without needing to type "python3" before every terminal entry. This can be achieved by running the following command before first use:
+
+    ```
+    chmod +x snpCounter.py
+    ```
+
+    Subsequent usage can be now done as follows:
+    ```
+    ./snpCounter.py <inputFile> <outputFile>
+    ```
+
 ## Example
    On Linux/MacOS:
     
